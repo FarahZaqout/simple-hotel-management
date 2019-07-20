@@ -2,8 +2,7 @@ from django.db import models
 from users.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
 
-''' Room rates should be variables that go into the the min and max validator '''
-
+# Room rates should be variables that go into the the min and max validator
 # Hotel model
 class Hotel(models.Model):
   name = models.CharField(max_length=200)
@@ -13,7 +12,7 @@ class Hotel(models.Model):
     return self.name
 
 
-class RoomCategories(models.Model):
+class RoomCategory(models.Model):
   name = models.CharField(max_length=20)
   rate = models.IntegerField(default=75, validators=[MinValueValidator(75), MaxValueValidator(150)])
 
@@ -21,7 +20,7 @@ class RoomCategories(models.Model):
     return f'Category: {self.name}, Rate: ${str(self.rate)}'
 
 
-class Rooms(models.Model):
+class Room(models.Model):
   number = models.CharField(
     verbose_name = 'room number',
     max_length = 3,
@@ -33,7 +32,7 @@ class Rooms(models.Model):
     return f'Hotel: {self.hotel}, Room: {self.number}'
 
 
-class RoomReservations(models.Model):
+class RoomReservation(models.Model):
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
   starting_date = models.DateTimeField(verbose_name='reserved from')
@@ -43,10 +42,7 @@ class RoomReservations(models.Model):
   is_deleted = models.BooleanField(default=False)
 
   def __str__(self):
-    return f'Room: {self.room},
-    from: {self.starting_date},
-    until:{self.ending_date},
-    deleted: {self.is_deleted}'
+    return f'Room: {self.room}, from: {self.starting_date}, until:{self.ending_date}, deleted: {self.is_deleted}'
 
 
 class Payment(models.Model):
