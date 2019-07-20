@@ -6,7 +6,7 @@ from .views import (HotelView,
   PaymentView)
 
 router = DefaultRouter()
-router.register('', HotelView)
+router.register('hotels', HotelView)
 router.register('categories', RoomCategoryView)
 router.register('rooms', RoomView)
 router.register('reservations', RoomReservationView)
