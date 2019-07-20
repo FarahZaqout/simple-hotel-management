@@ -26,7 +26,7 @@ class Room(models.Model):
     max_length = 3,
   )
   hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
-  category = models.ForeignKey(RoomCategories, on_delete=models.CASCADE)
+  category = models.ForeignKey(RoomCategory, on_delete=models.CASCADE)
 
   def __str__(self):
     return f'Hotel: {self.hotel}, Room: {self.number}'
@@ -37,7 +37,7 @@ class RoomReservation(models.Model):
   updated_at = models.DateTimeField(auto_now=True)
   starting_date = models.DateTimeField(verbose_name='reserved from')
   ending_date = models.DateTimeField(verbose_name='reserved until')
-  room = models.ForeignKey(Rooms, on_delete=models.CASCADE)
+  room = models.ForeignKey(Room, on_delete=models.CASCADE)
   user = models.ForeignKey(User, on_delete=models.CASCADE)
   is_deleted = models.BooleanField(default=False)
 
